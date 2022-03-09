@@ -81,7 +81,7 @@
         </filter>
     </appender>
 
-    <logger name="com.nowcoder.community" level="debug"/>
+    <logger name="com.diy.community" level="debug"/>
 
     <root level="info">
         <appender-ref ref="FILE_ERROR"/>
