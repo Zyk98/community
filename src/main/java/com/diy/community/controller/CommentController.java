@@ -68,8 +68,8 @@ public class CommentController implements CommunityConstant {
         eventProducer.fireEvent(event);
 
         // 触发发帖事件，因为评论帖子时，帖子的评论数量就更改了，需要更新elasticsearch中的数据
-        if(comment.getEntityType()==ENTITY_TYPE_POST){
-            event=new Event()
+        if (comment.getEntityType() == ENTITY_TYPE_POST) {
+            event = new Event()
                     .setTopic(TOPIC_PUBLISH)
                     .setUserId(hostHolder.getUser().getId())
                     .setEntityType(ENTITY_TYPE_POST)
@@ -78,7 +78,7 @@ public class CommentController implements CommunityConstant {
 
             // 计算帖子分数
             String redisKey = RedisKeyUtil.getPostScoreKey();
-            redisTemplate.opsForSet().add(redisKey,discussPostId);
+            redisTemplate.opsForSet().add(redisKey, discussPostId);
         }
 
         return "redirect:/discuss/detail/" + discussPostId;

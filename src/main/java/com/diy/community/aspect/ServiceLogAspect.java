@@ -36,7 +36,7 @@ public class ServiceLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
         //TODO:此处逻辑处理实现简单，需要详细实现。
-        if(attributes==null){
+        if (attributes == null) {
             return;
         }
         HttpServletRequest request = attributes.getRequest();

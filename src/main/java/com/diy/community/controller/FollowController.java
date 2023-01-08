@@ -78,7 +78,7 @@ public class FollowController implements CommunityConstant {
         page.setPath("/followees/" + userId);
         page.setRows((int) followService.findFolloweeCount(userId, ENTITY_TYPE_USER));
 
-        List<Map <String, Object>> userList = followService.findFollowees(userId, page.getOffset(), page.getLimit());
+        List<Map<String, Object>> userList = followService.findFollowees(userId, page.getOffset(), page.getLimit());
         if (userList != null) {
             for (Map<String, Object> map : userList) {
                 User u = (User) map.get("user");

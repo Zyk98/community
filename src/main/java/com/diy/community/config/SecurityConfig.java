@@ -77,7 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                 .authenticationEntryPoint(new AuthenticationEntryPoint() {
                     // 没有登录
                     @Override
-                    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
+                    public void commence(HttpServletRequest request, HttpServletResponse response,
+                                         AuthenticationException e) throws IOException, ServletException {
                         String xRequestedWith = request.getHeader("x-requested-with");
                         // 判断是普通请求还是异步请求，进行不同的处理
                         if ("XMLHttpRequest".equals(xRequestedWith)) { // 异步请求
@@ -92,7 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                 .accessDeniedHandler(new AccessDeniedHandler() {
                     // 权限不足
                     @Override
-                    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
+                    public void handle(HttpServletRequest request, HttpServletResponse response,
+                                       AccessDeniedException e) throws IOException, ServletException {
                         String xRequestedWith = request.getHeader("x-requested-with");
                         if ("XMLHttpRequest".equals(xRequestedWith)) { // 异步请求
                             response.setContentType("application/plain;charset=utf-8");

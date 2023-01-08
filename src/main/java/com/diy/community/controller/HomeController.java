@@ -32,9 +32,10 @@ public class HomeController implements CommunityConstant {
     private LikeService likeService;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String root(){
+    public String root() {
         return "forward:/index";
     }
+
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page,
                                @RequestParam(name = "orderMode", defaultValue = "1") int orderMode) {
@@ -42,7 +43,7 @@ public class HomeController implements CommunityConstant {
         // 所以,在thymeleaf中可以直接访问Page对象中的数据.
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index?orderMode=" + orderMode);
-        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit(),orderMode);
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit(), orderMode);
         List<Map<String, Object>> discussPosts = new ArrayList<>();
         if (list != null) {
             for (DiscussPost post : list) {

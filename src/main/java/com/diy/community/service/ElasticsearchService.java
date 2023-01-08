@@ -51,10 +51,10 @@ public class ElasticsearchService {
     }
 
     /**
-     * @Description: es 搜索功能
      * @param keyword 搜索的关键字
      * @param current 当前页，从0开始
-     * @param limit 每页数据
+     * @param limit   每页数据
+     * @Description: es 搜索功能
      **/
     public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()

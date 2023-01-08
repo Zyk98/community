@@ -114,11 +114,11 @@ public class FollowService implements CommunityConstant {
     }
 
     /**
-     * @Description: 查询某用户关注的人
      * @param userId
      * @param offset 分页开始
      * @param limit
-     * @return: java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
+     * @Description: 查询某用户关注的人
+     * @return: java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      **/
     public List<Map<String, Object>> findFollowees(int userId, int offset, int limit) {
         String followeeKey = RedisKeyUtil.getFolloweeKey(userId, ENTITY_TYPE_USER);
@@ -129,22 +129,22 @@ public class FollowService implements CommunityConstant {
 
         List<Map<String, Object>> list = new ArrayList<>();
         for (Integer targetId : targetIds) {
-            Map<String,Object> map=new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             User user = userService.findUserById(targetId);
-            map.put("user",user);
+            map.put("user", user);
             Double score = redisTemplate.opsForZSet().score(followeeKey, targetId);
-            map.put("followTime",new Date(score.longValue()));
+            map.put("followTime", new Date(score.longValue()));
             list.add(map);
         }
-        return  list;
+        return list;
     }
 
     /**
-     * @Description: 查询某用户的粉丝
      * @param userId
      * @param offset
      * @param limit
-     * @return: java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
+     * @Description: 查询某用户的粉丝
+     * @return: java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      **/
     public List<Map<String, Object>> findFollowers(int userId, int offset, int limit) {
         String followerKey = RedisKeyUtil.getFollowerKey(ENTITY_TYPE_USER, userId);

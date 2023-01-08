@@ -27,7 +27,7 @@ public class DatabaseEndpoint {
     private DataSource dataSource;
 
     @ReadOperation
-    public String checkConnection(){
+    public String checkConnection() {
         try (
                 Connection conn = dataSource.getConnection();
         ) {

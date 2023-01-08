@@ -31,7 +31,6 @@ public class SensitiveFilter {
     private TrieNode rootNode = new TrieNode();
 
 
-
     @PostConstruct
     public void init() {
         try (

@@ -46,7 +46,7 @@ public class DiscussPostController implements CommunityConstant {
 
     @Autowired
     private EventProducer eventProducer;
-    
+
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -69,7 +69,7 @@ public class DiscussPostController implements CommunityConstant {
         discussPostService.addDiscussPost(post);
 
         // 触发发帖事件
-        Event event=new Event()
+        Event event = new Event()
                 .setTopic(TOPIC_PUBLISH)
                 .setUserId(user.getId())
                 .setEntityType(ENTITY_TYPE_POST)
@@ -78,7 +78,7 @@ public class DiscussPostController implements CommunityConstant {
 
         // 计算帖子分数
         String redisKey = RedisKeyUtil.getPostScoreKey();
-        redisTemplate.opsForSet().add(redisKey,post.getId());
+        redisTemplate.opsForSet().add(redisKey, post.getId());
 
         // 报错的情况,将来统一处理.
         return CommunityUtil.getJSONString(0, "发布成功!");
@@ -126,7 +126,8 @@ public class DiscussPostController implements CommunityConstant {
                 likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, comment.getId());
                 commentVo.put("likeCount", likeCount);
                 //点赞状态,需要判断当前用户是否登录，没有登录无法点赞
-                likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(ENTITY_TYPE_COMMENT, comment.getId(), hostHolder.getUser().getId());
+                likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(ENTITY_TYPE_COMMENT,
+                        comment.getId(), hostHolder.getUser().getId());
                 commentVo.put("likeStatus", likeStatus);
                 // 回复列表
                 List<Comment> replyList = commentService.findCommentsByEntity(
@@ -148,7 +149,9 @@ public class DiscussPostController implements CommunityConstant {
                         likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, reply.getId());
                         replyVo.put("likeCount", likeCount);
                         //点赞状态,需要判断当前用户是否登录，没有登录无法点赞
-                        likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(ENTITY_TYPE_COMMENT, reply.getId(), hostHolder.getUser().getId());
+                        likeStatus = hostHolder.getUser() == null ? 0 :
+                                likeService.findEntityLikeStatus(ENTITY_TYPE_COMMENT, reply.getId(),
+                                        hostHolder.getUser().getId());
                         replyVo.put("likeStatus", likeStatus);
 
                         replyVoList.add(replyVo);
@@ -202,7 +205,7 @@ public class DiscussPostController implements CommunityConstant {
 
         // 计算帖子分数
         String redisKey = RedisKeyUtil.getPostScoreKey();
-        redisTemplate.opsForSet().add(redisKey,id);
+        redisTemplate.opsForSet().add(redisKey, id);
 
         return CommunityUtil.getJSONString(0);
     }

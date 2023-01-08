@@ -127,6 +127,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -135,7 +140,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <version>2.2.2.RELEASE</version>-->
+                <!--                <version>2.2.2.RELEASE</version>-->
             </plugin>
         </plugins>
     </build>

@@ -47,7 +47,7 @@ public class DiscussPostService {
     @PostConstruct
     public void init() {
         // 初始化帖子列表缓存
-        postListCache=Caffeine.newBuilder()
+        postListCache = Caffeine.newBuilder()
                 .maximumSize(maxSize)
                 .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
                 .build(new CacheLoader<String, List<DiscussPost>>() {
@@ -72,7 +72,7 @@ public class DiscussPostService {
                 });
 
         // 初始化帖子总数缓存
-        postRowsCache=Caffeine.newBuilder()
+        postRowsCache = Caffeine.newBuilder()
                 .maximumSize(maxSize)
                 .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
                 .build(new CacheLoader<Integer, Integer>() {

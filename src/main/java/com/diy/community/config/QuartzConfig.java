@@ -35,12 +35,12 @@ public class QuartzConfig {
         factoryBean.setGroup("alphaJobGroup");
         factoryBean.setDurability(true);
         factoryBean.setRequestsRecovery(true);//任务出现问题时是否恢复
-        return  factoryBean;
+        return factoryBean;
     }
 
     // 配置Trigger
     // @Bean
-    public SimpleTriggerFactoryBean alphaTrigger(JobDetail alphaJobDetail){
+    public SimpleTriggerFactoryBean alphaTrigger(JobDetail alphaJobDetail) {
         SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
         factoryBean.setJobDetail(alphaJobDetail);
         factoryBean.setName("alphaTrigger");
@@ -51,7 +51,7 @@ public class QuartzConfig {
     }
 
     // 刷新帖子分数任务
-     @Bean
+    @Bean
     public JobDetailFactoryBean postScoreRefreshJobDetail() {
         JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
         factoryBean.setJobClass(PostScoreRefreshJob.class);
@@ -59,11 +59,11 @@ public class QuartzConfig {
         factoryBean.setGroup("communityJobGroup");
         factoryBean.setDurability(true);
         factoryBean.setRequestsRecovery(true);
-        return  factoryBean;
+        return factoryBean;
     }
 
-     @Bean
-    public SimpleTriggerFactoryBean postScoreRefreshTrigger(JobDetail postScoreRefreshJobDetail){
+    @Bean
+    public SimpleTriggerFactoryBean postScoreRefreshTrigger(JobDetail postScoreRefreshJobDetail) {
         SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
         factoryBean.setJobDetail(postScoreRefreshJobDetail);
         factoryBean.setName("postScoreRefreshTrigger");

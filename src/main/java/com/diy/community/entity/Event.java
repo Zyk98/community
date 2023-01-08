@@ -20,7 +20,7 @@ public class Event {
     把其他额外的数据，存入map中，具有扩展性
     目的：为了后期动态扩展，有些字段没有办法做出预判
      */
-    private Map<String,Object> data=new HashMap<>();
+    private Map<String, Object> data = new HashMap<>();
 
     public String getTopic() {
         return topic;
@@ -75,8 +75,8 @@ public class Event {
         return data;
     }
 
-    public Event setData(String key,Object value) {
-        this.data.put(key,value);
+    public Event setData(String key, Object value) {
+        this.data.put(key, value);
         return this;
     }
 }

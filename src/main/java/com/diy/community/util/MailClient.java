@@ -29,7 +29,8 @@ public class MailClient {
 
     /**
      * 发送邮件
-     * @param to 目标邮箱地址
+     *
+     * @param to      目标邮箱地址
      * @param subject 邮件主题
      * @param content 邮件内容
      */

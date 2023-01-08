@@ -23,21 +23,22 @@ public class DataController {
     private DataService dataService;
 
     // 统计页面
-    @RequestMapping(path = "/data",method = {RequestMethod.GET,RequestMethod.POST})
-    public String getDataPage(){
+    @RequestMapping(path = "/data", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getDataPage() {
         return "/site/admin/data";
     }
 
     // 统计网站UV
-    @RequestMapping(path = "/data/uv",method = RequestMethod.POST)
+    @RequestMapping(path = "/data/uv", method = RequestMethod.POST)
     public String getUV(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start,
-                        @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, Model model){
+                        @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, Model model) {
         long uv = dataService.calculateUV(start, end);
-        model.addAttribute("uvResult",uv);
+        model.addAttribute("uvResult", uv);
         model.addAttribute("uvStartDate", start);
         model.addAttribute("uvEndDate", end);
 
-        // 此处与return "/site/admin/data"一样，只不过目前通过转发，可以复用getDataPage方法。这个也是getDataPage方法的method = {RequestMethod.GET,RequestMethod.POST}的原因，因为要接受来自getUV的request（为post方式）
+        // 此处与return "/site/admin/data"一样，只不过目前通过转发，可以复用getDataPage方法。这个也是getDataPage方法的method = {RequestMethod.GET,
+        // RequestMethod.POST}的原因，因为要接受来自getUV的request（为post方式）
         return "forward:/data";
     }
 
