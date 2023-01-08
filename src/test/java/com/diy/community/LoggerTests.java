@@ -19,10 +19,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @ContextConfiguration(classes = CommunityApplication.class)
 public class LoggerTests {
-    private static  final Logger logger= LoggerFactory.getLogger(LoggerTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoggerTests.class);
 
     @Test
-    public void testLogger(){
+    public void testLogger() {
         logger.debug("debug log");
         logger.info("info log");
         logger.warn("warn log");
